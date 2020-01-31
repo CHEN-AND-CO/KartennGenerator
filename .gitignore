@@ -35,5 +35,9 @@ OhMyBZH-Generator
 data/*/*.shp
 data/*/*.dbf
 data/*/*.shx
-
+data/*/*.cpg
+data/*/*.html
+data/*/*.txt
+data/*/*.prj
+data/*.zip
 .vscode

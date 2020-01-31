@@ -203,3 +203,6 @@ remote-run: upload
 
 kill:
 	ssh $(REMOTE_USER)@$(REMOTE_HOST) 'killall -s 2 $(BINARY_NAME)$(EXTENSION)'
+
+maps:
+	sh data/getMaps.sh
