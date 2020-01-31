@@ -12,8 +12,8 @@
   std::all_of(std::string(x).begin(), std::string(x).end(), ::isdigit)
 
 #define DEFAULT_DATA_SOURCES_PATH "/usr/lib/mapnik/3.0/input"
-#define DEFAULT_MAP_PATH "data/world/world.xml"
-#define DEFAULT_OUTPUT_PATH "our_world.png"
+#define DEFAULT_MAP_PATH "data/finistere/finistere.xml"
+#define DEFAULT_OUTPUT_PATH "finistere.png"
 #define DEFAULT_WIDTH 7020   // A1 300pp
 #define DEFAULT_HEIGHT 9930  // A1 300pp
 
@@ -46,7 +46,12 @@ int main(int argc, char **argv) {
             << mapPath << " ..." << std::endl;
   mapnik::Map map{width, height};
   mapnik::load_map(map, mapPath);
-  map.zoom_all();
+  map.set_srs(
+      "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 "
+      "+k=1.0 +units=m +nadgrids=@null +wktext +no_defs");
+  map.zoom_to_box(
+      mapnik::box2d<double>(-471920.2, 6091823.2, -442437.7, 6109042.6));
+  std::cout << "Scale: 1:" << map.scale() <<  std::endl;
 
   std::cout << "[mapnik] Rendering image (" << width << "x" << height << ") ..."
             << std::endl;
@@ -56,6 +61,8 @@ int main(int argc, char **argv) {
 
   std::cout << "[mapnik] Saving file to " << outputPath << " ..." << std::endl;
   mapnik::save_to_file(image, outputPath);
+
+  std::cout << "Done !" << std::endl;
 
   return 0;
 }
