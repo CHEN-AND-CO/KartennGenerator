@@ -30,4 +30,10 @@
 *.exe
 *.out
 *.app
+
 OhMyBZH-Generator
+data/*/*.shp
+data/*/*.dbf
+data/*/*.shx
+
+.vscode
