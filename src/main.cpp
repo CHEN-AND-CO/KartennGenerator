@@ -38,16 +38,23 @@ int main(int argc, char **argv) {
       break;
   }
 
+  std::cout << "[mapnik] Setting datasource cache from " << dataSourcesPath
+            << " ..." << std::endl;
   mapnik::datasource_cache::instance().register_datasources(dataSourcesPath);
 
+  std::cout << "[mapnik] Loading Map (" << width << "x" << height << ") from "
+            << mapPath << " ..." << std::endl;
   mapnik::Map map{width, height};
   mapnik::load_map(map, mapPath);
   map.zoom_all();
 
+  std::cout << "[mapnik] Rendering image (" << width << "x" << height << ") ..."
+            << std::endl;
   mapnik::image_rgba8 image{width, height};
   mapnik::agg_renderer<mapnik::image_rgba8> renderer{map, image};
   renderer.apply();
 
+  std::cout << "[mapnik] Saving file to " << outputPath << " ..." << std::endl;
   mapnik::save_to_file(image, outputPath);
 
   return 0;

@@ -40,4 +40,8 @@ data/*/*.html
 data/*/*.txt
 data/*/*.prj
 data/*.zip
+data/*.osm
+data/*.osm.pbf
 .vscode
+
+*.png
