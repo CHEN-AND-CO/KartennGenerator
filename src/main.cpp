@@ -23,8 +23,6 @@ int main(int argc, char **argv) {
               mapPath = DEFAULT_MAP_PATH, outputPath = DEFAULT_OUTPUT_PATH;
 
   switch (argc) {
-    case 6:
-      dataSourcesPath = argv[5];
     case 5:
       if (isCharArrayNumeric(argv[4])) height = std::atoi(argv[4]);
     case 4:
@@ -38,9 +36,17 @@ int main(int argc, char **argv) {
       break;
   }
 
+  mapnik::parameters p;
+    p["type"] = "postgis";
+  p["host"] = "localhost";
+  p["port"] = "5432";
+  p["dbname"] = "etdm1";
+  p["user"] = "etdm1";
+  p["password"] = "chenco2020";
+
   std::cout << "[mapnik] Setting datasource cache from " << dataSourcesPath
             << " ..." << std::endl;
-  mapnik::datasource_cache::instance().register_datasources(dataSourcesPath);
+  mapnik::datasource_cache::instance().create(p);
 
   std::cout << "[mapnik] Loading Map (" << width << "x" << height << ") from "
             << mapPath << " ..." << std::endl;
