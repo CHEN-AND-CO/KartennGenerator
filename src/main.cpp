@@ -11,34 +11,38 @@
 #define isCharArrayNumeric(x) \
   std::all_of(std::string(x).begin(), std::string(x).end(), ::isdigit)
 
-#define DEFAULT_DATA_SOURCES_PATH "/usr/lib/mapnik/3.0/input"
+#define DEFAULT_DATA_SOURCES_PATH "/usr/lib/mapnik/input"
 #define DEFAULT_MAP_PATH "data/finistere/finistere.xml"
 #define DEFAULT_OUTPUT_PATH "finistere.png"
-#define DEFAULT_WIDTH 7020   // A1 300pp
-#define DEFAULT_HEIGHT 9930  // A1 300pp
+#define DEFAULT_WIDTH 7020  // A1 300pp
+#define DEFAULT_HEIGHT 9930 // A1 300pp
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
   int width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT;
   std::string dataSourcesPath = DEFAULT_DATA_SOURCES_PATH,
               mapPath = DEFAULT_MAP_PATH, outputPath = DEFAULT_OUTPUT_PATH;
 
-  switch (argc) {
-    case 5:
-      if (isCharArrayNumeric(argv[4])) height = std::atoi(argv[4]);
-    case 4:
-      if (isCharArrayNumeric(argv[3])) width = std::atoi(argv[3]);
-      break;
-    case 3:
-      mapPath = argv[2];
-    case 2:
-      outputPath = argv[1];
-    default:
-      break;
+  switch (argc)
+  {
+  case 5:
+    if (isCharArrayNumeric(argv[4]))
+      height = std::atoi(argv[4]);
+  case 4:
+    if (isCharArrayNumeric(argv[3]))
+      width = std::atoi(argv[3]);
+    break;
+  case 3:
+    mapPath = argv[2];
+  case 2:
+    outputPath = argv[1];
+  default:
+    break;
   }
 
   mapnik::parameters p;
-    p["type"] = "postgis";
-  p["host"] = "localhost";
+  p["type"] = "postgis";
+  p["host"] = "172.31.9.45";
   p["port"] = "5432";
   p["dbname"] = "etdm1";
   p["user"] = "etdm1";
@@ -46,6 +50,7 @@ int main(int argc, char **argv) {
 
   std::cout << "[mapnik] Setting datasource cache from " << dataSourcesPath
             << " ..." << std::endl;
+  mapnik::datasource_cache::instance().register_datasources(dataSourcesPath);
   mapnik::datasource_cache::instance().create(p);
 
   std::cout << "[mapnik] Loading Map (" << width << "x" << height << ") from "
@@ -57,7 +62,7 @@ int main(int argc, char **argv) {
       "+k=1.0 +units=m +nadgrids=@null +wktext +no_defs");
   map.zoom_to_box(
       mapnik::box2d<double>(-471920.2, 6091823.2, -442437.7, 6109042.6));
-  std::cout << "Scale: 1:" << map.scale() <<  std::endl;
+  std::cout << "Scale: 1:" << map.scale() << std::endl;
 
   std::cout << "[mapnik] Rendering image (" << width << "x" << height << ") ..."
             << std::endl;
