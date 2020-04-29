@@ -23,7 +23,7 @@ SRC_DIR			=	./src
 PROJECT_TYPE	=	C++
 STD_NORM		=	c++17
 CFLAGS 			= 	-g -Wall -Wextra -Os -Wno-implicit-fallthrough
-LDFLAGS 		= 
+LDFLAGS 		= 	-licuuc -lpqxx
 CFLAGS 			+= 	$(shell mapnik-config --includes --defines --cxxflags --dep-includes)
 LDFLAGS 		+= 	$(shell mapnik-config --libs --dep-libs --ldflags)
 
@@ -164,6 +164,7 @@ $(info Object files target : $(OBJ))
 $(info )
 
 all: $(OUTPUT_FOLDER)/$(BINARY_NAME)$(EXTENSION)									# Build all executables
+	@echo "\e[94;1mautomake: All done ($(shell date +%T))\e[0m"
 
 rebuild: remake																		# Clean and build all executables
 	$(info "remake" alias)
