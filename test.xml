@@ -243,25 +243,4 @@
             <Parameter name="table">(select * from planet_osm_polygon) as debug</Parameter>
         </Datasource>
     </Layer> -->
-
-    <Layer name="lines" srs="+init=epsg:4326">
-        <StyleName>lines</StyleName>
-        <StyleName>waterway-lines</StyleName>
-        <StyleName>roads-outline</StyleName>
-        <StyleName>roads-paths</StyleName>
-        <StyleName>roads-misc</StyleName>
-        <StyleName>roads-national</StyleName>
-        <Datasource>
-            <Parameter name="type">shape</Parameter>
-            <Parameter name="file">maps/finistere/lines.shp</Parameter>
-        </Datasource>
-    </Layer>
-
-    <Layer name="points" srs="+init=epsg:4326">
-        <StyleName>hamlets</StyleName>
-        <Datasource>
-            <Parameter name="type">shape</Parameter>
-            <Parameter name="file">maps/finistere/points.shp</Parameter>
-        </Datasource>
-    </Layer>
 </Map>
