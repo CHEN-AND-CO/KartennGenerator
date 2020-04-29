@@ -48,3 +48,5 @@ data/*.osm.pbf
 
 build
 config.json
+
+KartennGenerator
