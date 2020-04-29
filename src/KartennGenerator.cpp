@@ -58,8 +58,7 @@ void KartennGenerator::render(std::string _townName, std::string _output) {
   std::cout << "Rendering map...\n";
 
   // Register Mapnik's fonts and plugins
-  mapnik::datasource_cache::instance().register_datasources(
-      "/usr/lib/mapnik/3.0/input");
+  mapnik::datasource_cache::instance().register_datasources(dataSourcePath);
   mapnik::freetype_engine::register_font(
       "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf");
 
@@ -86,4 +85,14 @@ void KartennGenerator::render(std::string _townName, std::string _output) {
   mapnik::save_to_file(im, _output);
 
   std::cout << "Done !\n";
+}
+
+void KartennGenerator::setCred(std::string _d, std::string _u, std::string _p) {
+  database = _d;
+  user = _u;
+  password = _p;
+}
+void KartennGenerator::setSize(int _w, int _h) {
+  width = _w;
+  height = _h;
 }

@@ -1,31 +1,35 @@
+#include "ConfigLoader.hpp"
 #include "KartennGenerator.hpp"
 #include <string>
 
 #define isCharArrayNumeric(x)                                                  \
   std::all_of(std::string(x).begin(), std::string(x).end(), ::isdigit)
 
-#define DEFAULT_DATA_SOURCES_PATH "/usr/lib/mapnik/input"
-#define DEFAULT_MAP_PATH "data/finistere/finistere.xml"
-#define DEFAULT_OUTPUT_PATH "finistere.png"
+#define DEFAULT_CONFIG_PATH "config.json"
+
 #define DEFAULT_WIDTH 7020  // A1 300pp
 #define DEFAULT_HEIGHT 9930 // A1 300pp
-#define DEFAULT_TOWN "Landerneau"
-
-#define PSQL_DB "ohmybzh"
-#define PSQL_USER "admin"
-#define PSQL_PWD "G6hY75t"
 
 int main(int argc, char **argv) {
-  int width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT;
-  std::string dataSourcesPath = DEFAULT_DATA_SOURCES_PATH,
-              mapPath = DEFAULT_MAP_PATH, outputPath = DEFAULT_OUTPUT_PATH,
-              town = DEFAULT_TOWN;
+  ConfigLoader conf;
 
-   if ( argc < 4) {
-        std::cerr << "Error: A township name or postcode must be provided\n";
-        std::cerr << "Usage: rendermap <name|postcode> <model.xml> <output.png> [<size_x> <size_y>]\n";
-        exit(-1);
-    }
+  try {
+    conf.load(DEFAULT_CONFIG_PATH);
+  } catch (std::string error) {
+    std::cerr << error << std::endl;
+
+    return -2;
+  }
+
+  int width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT;
+  std::string mapPath, outputPath, town;
+
+  if (argc < 4) {
+    std::cerr << "Error: A township name or postcode must be provided\n";
+    std::cerr << "Usage: rendermap <name|postcode> <model.xml> <output.png> "
+                 "[<size_x> <size_y>]\n";
+    exit(-1);
+  }
 
   switch (argc) {
   case 6:
@@ -46,7 +50,8 @@ int main(int argc, char **argv) {
   }
 
   KartennGenerator kg;
-  kg.setCred(PSQL_DB, PSQL_USER, PSQL_PWD);
+  kg.setCred(conf.getPsqlDb(), conf.getPsqlUser(), conf.getPsqlPass());
+  kg.setDataSourcePath(conf.getDataSourcePath());
   kg.setModel(mapPath);
   kg.setSize(width, height);
   kg.render(town, outputPath);

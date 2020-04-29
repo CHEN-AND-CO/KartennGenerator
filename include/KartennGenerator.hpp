@@ -1,16 +1,16 @@
 #ifndef OHMYBZH_GENERATOR_HPP
 #define OHMYBZH_GENERATOR_HPP
 
-#include <mapnik/map.hpp>
-#include <mapnik/layer.hpp>
-#include <mapnik/load_map.hpp>
 #include <mapnik/agg_renderer.hpp>
+#include <mapnik/datasource_cache.hpp>
 #include <mapnik/image.hpp>
 #include <mapnik/image_util.hpp>
+#include <mapnik/layer.hpp>
+#include <mapnik/load_map.hpp>
+#include <mapnik/map.hpp>
 #include <mapnik/plugin.hpp>
-#include <mapnik/datasource_cache.hpp>
-#include <mapnik/projection.hpp>
 #include <mapnik/proj_transform.hpp>
+#include <mapnik/projection.hpp>
 #include <pqxx/pqxx>
 
 #include <exception>
@@ -38,20 +38,15 @@ public:
   std::string getTownSQLReq(int _margin, std::string _adminLvl,
                             std::string _townName);
 
+  void setDataSourcePath(std::string _d) { dataSourcePath = _d; }
   void setModel(std::string _m) { model = _m; }
-  void setCred(std::string _d, std::string _u, std::string _p) {
-    database = _d;
-    user = _u;
-    password = _p;
-  }
-  void setSize(int _w, int _h) {
-    width = _w;
-    height = _h;
-  }
+  void setCred(std::string _d, std::string _u, std::string _p);
+  void setSize(int _w, int _h);
 
   void render(std::string _townName, std::string _output);
 
 private:
+  std::string dataSourcePath;
   std::string model;
   std::string database, user, password;
   int width = WIDTH, height = HEIGHT;
