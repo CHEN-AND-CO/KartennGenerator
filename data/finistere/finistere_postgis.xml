@@ -1,0 +1,14 @@
+<Map background-color="#acf" srs="+proj=merc" >
+    <Layer name="lines" srs="+init=epsg:4326">
+        <StyleName>lines</StyleName>
+        <StyleName>waterway-lines</StyleName>
+        <StyleName>roads-outline</StyleName>
+        <StyleName>roads-paths</StyleName>
+        <StyleName>roads-misc</StyleName>
+        <StyleName>roads-national</StyleName>
+        <Datasource>
+            <Parameter name="type">shape</Parameter>
+            <Parameter name="file">lines.shp</Parameter>
+        </Datasource>
+    </Layer>
+</Map>
