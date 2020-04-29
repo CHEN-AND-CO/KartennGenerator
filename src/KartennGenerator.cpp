@@ -5,7 +5,7 @@ std::string KartennGenerator::getBboxExtent(std::string _townName) {
 
   try {
     pqxx::connection db{"user=" + user + " password=" + password +
-                        " dbname=" + database + " host=" + host};
+                        " dbname=" + database};
     pqxx::work query{db};
 
     pqxx::result res =

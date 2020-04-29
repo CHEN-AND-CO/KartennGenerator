@@ -39,11 +39,10 @@ public:
                             std::string _townName);
 
   void setModel(std::string _m) { model = _m; }
-  void setCred(std::string _h, std::string _d, std::string _u, std::string _p) {
+  void setCred(std::string _d, std::string _u, std::string _p) {
     database = _d;
     user = _u;
     password = _p;
-    host = _h;
   }
   void setSize(int _w, int _h) {
     width = _w;
@@ -54,7 +53,7 @@ public:
 
 private:
   std::string model;
-  std::string database, user, password, host;
+  std::string database, user, password;
   int width = WIDTH, height = HEIGHT;
 };
 
