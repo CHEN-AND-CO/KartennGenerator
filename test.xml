@@ -191,14 +191,14 @@
     </Style>
 
     <!-- Generic PostGIS datasource -->
-    <!-- <Datasource name="postgis-kartenn">
+    <Datasource name="postgis-kartenn">
         <Parameter name="type">postgis</Parameter>
         <Parameter name="host">localhost</Parameter>
-        <Parameter name="dbname">kartenn-gis-dev</Parameter>
-        <Parameter name="user">herrcrazi</Parameter>      
-        <Parameter name="password">chenco</Parameter>
+        <Parameter name="dbname">ohmybzh</Parameter>
+        <Parameter name="user">admin</Parameter>      
+        <Parameter name="password">G6hY75t</Parameter>
         <Parameter name="srid">3857</Parameter>
-    </Datasource> -->
+    </Datasource>
 
     <!-- PostGis layers uses the Mercator projection -->
     <Layer name="areas" srs="+init=epsg:3857">

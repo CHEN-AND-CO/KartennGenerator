@@ -68,7 +68,6 @@ void KartennGenerator::render(std::string _townName, std::string _output) {
   // Register Mapnik's fonts and plugins
   mapnik::datasource_cache::instance().register_datasources(
       "/usr/lib/mapnik/3.0/input");
-        mapnik::datasource_cache::instance().create(p);
   mapnik::freetype_engine::register_font(
       "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf");
 
