@@ -108,7 +108,7 @@
         <Rule>
             <Filter>[highway] = 'secondary' or [highway] = 'secondary_link'</Filter>
             <LineSymbolizer stroke="#ff8" stroke-width="6"/>
-            <ShieldSymbolizer face-name="DejaVu Sans Condensed" size="15" file="icons/signs/road_dep.png" fill="#ddaa00" placement="line" spacing="500">[name]</ShieldSymbolizer>
+            <!-- <ShieldSymbolizer face-name="DejaVu Sans Condensed" size="15" file="icons/signs/road_dep.png" fill="#ddaa00" placement="line" spacing="500">[name]</ShieldSymbolizer> -->
             <TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="#000" halo-fill="#fff" halo-radius="1" placement="line" spacing="500">[name]</TextSymbolizer>
         </Rule>
     </Style>
