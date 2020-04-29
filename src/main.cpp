@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
   }
 
   KartennGenerator kg;
-  kg.setCred(PSQL_HOST, PSQL_DB, PSQL_USER, PSQL_PWD);
+  kg.setCred(PSQL_DB, PSQL_USER, PSQL_PWD);
   kg.setModel(mapPath);
   kg.setSize(width, height);
   kg.render(town, outputPath);
