@@ -53,14 +53,6 @@ std::string KartennGenerator::getTownSQLReq(int _margin, std::string _adminLvl,
 }
 
 void KartennGenerator::render(std::string _townName, std::string _output) {
-  mapnik::parameters p;
-  p["type"] = "postgis";
-  p["host"] = "localhost";
-  p["port"] = "5432";
-  p["dbname"] = "ohmybzh";
-  p["user"] = "admin";
-  p["password"] = "G6hY75t";
-
   auto mapExtent = bboxToMapExtent(getBboxExtent(_townName));
 
   std::cout << "Rendering map...\n";

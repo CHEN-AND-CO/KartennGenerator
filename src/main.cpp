@@ -11,7 +11,6 @@
 #define DEFAULT_HEIGHT 9930 // A1 300pp
 #define DEFAULT_TOWN "Landerneau"
 
-#define PSQL_HOST "217.182.204.82"
 #define PSQL_DB "ohmybzh"
 #define PSQL_USER "admin"
 #define PSQL_PWD "G6hY75t"

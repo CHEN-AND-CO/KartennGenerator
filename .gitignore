@@ -45,3 +45,5 @@ data/*.osm.pbf
 .vscode
 
 *.png
+
+build
