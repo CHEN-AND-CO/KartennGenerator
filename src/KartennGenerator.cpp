@@ -53,6 +53,14 @@ std::string KartennGenerator::getTownSQLReq(int _margin, std::string _adminLvl,
 }
 
 void KartennGenerator::render(std::string _townName, std::string _output) {
+  mapnik::parameters p;
+  p["type"] = "postgis";
+  p["host"] = "localhost";
+  p["port"] = "5432";
+  p["dbname"] = "ohmybzh";
+  p["user"] = "admin";
+  p["password"] = "G6hY75t";
+
   auto mapExtent = bboxToMapExtent(getBboxExtent(_townName));
 
   std::cout << "Rendering map...\n";
@@ -60,6 +68,7 @@ void KartennGenerator::render(std::string _townName, std::string _output) {
   // Register Mapnik's fonts and plugins
   mapnik::datasource_cache::instance().register_datasources(
       "/usr/lib/mapnik/3.0/input");
+        mapnik::datasource_cache::instance().create(p);
   mapnik::freetype_engine::register_font(
       "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf");
 
