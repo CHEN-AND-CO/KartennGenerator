@@ -53,6 +53,7 @@ int main(int argc, char **argv) {
   kg.setCred(conf.getPsqlDb(), conf.getPsqlUser(), conf.getPsqlPass());
   kg.setDataSourcePath(conf.getDataSourcePath());
   kg.setModel(mapPath);
+  kg.createDbSettings();
   kg.setSize(width, height);
   kg.render(town, outputPath);
 

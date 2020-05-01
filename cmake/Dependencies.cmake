@@ -29,3 +29,5 @@ list(APPEND Dependencies_LINKER_LIBS ${MAPNIK_LIBRARIES})
 find_package(ICU REQUIRED)
 include_directories(${ICU_INCLUDE_DIRS})
 list(APPEND Dependencies_LINKER_LIBS ${ICU_LIBRARIES})
+
+list(APPEND Dependencies_LINKER_LIBS -lstdc++fs)

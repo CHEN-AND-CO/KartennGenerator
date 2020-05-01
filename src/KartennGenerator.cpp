@@ -1,9 +1,11 @@
 #include "KartennGenerator.hpp"
 
-std::string KartennGenerator::getBboxExtent(std::string _townName) {
+std::string KartennGenerator::getBboxExtent(std::string _townName)
+{
   std::string bbox;
 
-  try {
+  try
+  {
     pqxx::connection db{"user=" + user + " password=" + password +
                         " dbname=" + database};
     pqxx::work query{db};
@@ -18,7 +20,9 @@ std::string KartennGenerator::getBboxExtent(std::string _townName) {
       bbox = res[0][0].as<std::string>();
     else
       throw std::runtime_error("Couldn't find this township in the database.");
-  } catch (const std::exception &e) {
+  }
+  catch (const std::exception &e)
+  {
     std::cerr << "Error: " << e.what() << '\n';
     std::cerr << ">> INFO:\n\tdb_user:\t" << user << "\n\tdb_passwd:\t"
               << password << "\n\tdb_name:\t" << database << "\n\ttownship:\t"
@@ -29,12 +33,14 @@ std::string KartennGenerator::getBboxExtent(std::string _townName) {
   return bbox;
 }
 
-std::vector<double> KartennGenerator::bboxToMapExtent(std::string _bbox) {
+std::vector<double> KartennGenerator::bboxToMapExtent(std::string _bbox)
+{
   std::vector<double> mapExtent;
   _bbox = _bbox.substr(4, _bbox.length() - 5);
   std::cout << "Bounding box: " << _bbox << "\n";
 
-  for (auto &coord : split(_bbox, " ,")) {
+  for (auto &coord : split(_bbox, " ,"))
+  {
     mapExtent.push_back(std::stod(coord));
   }
 
@@ -42,7 +48,8 @@ std::vector<double> KartennGenerator::bboxToMapExtent(std::string _bbox) {
 }
 
 std::string KartennGenerator::getTownSQLReq(int _margin, std::string _adminLvl,
-                                            std::string _townName) {
+                                            std::string _townName)
+{
   std::stringstream query;
   query << "SELECT ST_Expand(ST_Extent(way), " << _margin
         << ") as bbox FROM planet_osm_polygon WHERE admin_level = '"
@@ -52,13 +59,13 @@ std::string KartennGenerator::getTownSQLReq(int _margin, std::string _adminLvl,
   return query.str();
 }
 
-void KartennGenerator::createDbSettings() {
+void KartennGenerator::createDbSettings()
+{
   std::string path{
       model.substr(
           0, model.length() -
                  std::filesystem::path(model).filename().string().length()) +
       "db_settings"};
-
   std::ofstream out(path);
 
   auto lp = "<Parameter name =\"", mp = "\">", rp = "</Parameter>";
@@ -71,7 +78,8 @@ void KartennGenerator::createDbSettings() {
   out.flush();
 }
 
-void KartennGenerator::render(std::string _townName, std::string _output) {
+void KartennGenerator::render(std::string _townName, std::string _output)
+{
   auto mapExtent = bboxToMapExtent(getBboxExtent(_townName));
 
   std::cout << "Rendering map...\n";
@@ -91,7 +99,8 @@ void KartennGenerator::render(std::string _townName, std::string _output) {
                                       mapExtent[3]));
 
   std::cout << "Layers :\n";
-  for (auto &&layer : m.layers()) {
+  for (auto &&layer : m.layers())
+  {
     std::cout << "\t" << layer.name() << "\n";
   }
   std::cout << "Scale: 1:" << m.scale() << "\n";
@@ -105,12 +114,14 @@ void KartennGenerator::render(std::string _townName, std::string _output) {
   std::cout << "Done !\n";
 }
 
-void KartennGenerator::setCred(std::string _d, std::string _u, std::string _p) {
+void KartennGenerator::setCred(std::string _d, std::string _u, std::string _p)
+{
   database = _d;
   user = _u;
   password = _p;
 }
-void KartennGenerator::setSize(int _w, int _h) {
+void KartennGenerator::setSize(int _w, int _h)
+{
   width = _w;
   height = _h;
 }
