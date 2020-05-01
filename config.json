@@ -1,6 +1,6 @@
 {
     "DATASOURCES_PATH": "/usr/lib/mapnik/3.0/input",
-    "PSQL_DB": "db",
-    "PSQL_USER": "user",
-    "PSQL_PASS": "password"
+    "PSQL_DB": "ohmybzh",
+    "PSQL_USER": "admin",
+    "PSQL_PASS": "G6hY75t"
 }
