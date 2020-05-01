@@ -52,6 +52,25 @@ std::string KartennGenerator::getTownSQLReq(int _margin, std::string _adminLvl,
   return query.str();
 }
 
+void KartennGenerator::createDbSettings() {
+  std::string path{
+      model.substr(
+          0, model.length() -
+                 std::filesystem::path(model).filename().string().length()) +
+      "db_settings"};
+
+  std::ofstream out(path);
+
+  auto lp = "<Parameter name =\"", mp = "\">", rp = "</Parameter>";
+
+  out << lp << "type" << mp << "postgis" << rp << std::endl;
+  out << lp << "host" << mp << "localhost" << rp << std::endl;
+  out << lp << "user" << mp << user << rp << std::endl;
+  out << lp << "dbname" << mp << database << rp << std::endl;
+  out << lp << "password" << mp << password << rp << std::endl;
+  out.flush();
+}
+
 void KartennGenerator::render(std::string _townName, std::string _output) {
   auto mapExtent = bboxToMapExtent(getBboxExtent(_townName));
 
@@ -68,7 +87,6 @@ void KartennGenerator::render(std::string _townName, std::string _output) {
 
   m.set_srs(MAPNIK_SRS);
 
-  //
   m.zoom_to_box(mapnik::box2d<double>(mapExtent[0], mapExtent[1], mapExtent[2],
                                       mapExtent[3]));
 

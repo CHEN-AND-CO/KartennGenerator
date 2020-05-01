@@ -48,3 +48,4 @@ data/*.osm.pbf
 
 build
 config.json
+db_settings

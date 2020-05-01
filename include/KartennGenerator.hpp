@@ -16,6 +16,9 @@
 #include <exception>
 #include <string>
 #include <vector>
+#include <filesystem>
+#include <iostream>
+#include <fstream>
 
 #include "Tools.hpp"
 
@@ -24,11 +27,12 @@
 #define MARGINS_M 1000
 #define TOWNSHIP_ADMINLVL "8"
 
-#define MAPNIK_SRS                                                             \
-  "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 "   \
+#define MAPNIK_SRS                                                           \
+  "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 " \
   "+k=1.0 +units=m +nadgrids=@null +wktext +no_defs"
 
-class KartennGenerator {
+class KartennGenerator
+{
 public:
   KartennGenerator() {}
 
@@ -43,6 +47,7 @@ public:
   void setCred(std::string _d, std::string _u, std::string _p);
   void setSize(int _w, int _h);
 
+  void createDbSettings();
   void render(std::string _townName, std::string _output);
 
 private:

@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[
+    <!ENTITY db_settings SYSTEM "db_settings">
+]>
 <Map background-color="#acf" srs="+proj=merc" >
 <!-- <Map background-color="#efd" srs="+proj=lonlat"> -->
     <Style name="areas">
@@ -192,11 +196,7 @@
 
     <!-- Generic PostGIS datasource -->
     <Datasource name="postgis-kartenn">
-        <Parameter name="type">postgis</Parameter>
-        <Parameter name="host">localhost</Parameter>
-        <Parameter name="dbname">ohmybzh</Parameter>
-        <Parameter name="user">admin</Parameter>      
-        <Parameter name="password">G6hY75t</Parameter>
+        &db_settings;
         <Parameter name="srid">3857</Parameter>
     </Datasource>
 
