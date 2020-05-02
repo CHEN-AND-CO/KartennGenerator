@@ -47,7 +47,6 @@ data/*.osm.pbf
 *.png
 
 build
-config.json
 db_settings
 
 KartennGenerator
