@@ -2,12 +2,12 @@
 
 set -e
 
-function dependencies(){
+dependencies(){
     echo 'Installs C++ dependencies and tools'
-    sudo apt -y install gcc g++ cmake mapnik mapnik-doc mapnik-reference mapnik-utils libpqxx-dev libmapnik-dev nlohmann-json3-dev
+    sudo apt -y install gcc g++ cmake mapnik* libpqxx-dev libmapnik-dev nlohmann-json3-dev
 }
 
-function build(){
+build(){
     echo 'Configuring...'
     mkdir -p build
     cd build
@@ -16,5 +16,5 @@ function build(){
     make -j
 }
 
-dependencies()
-build()
+dependencies
+build
