@@ -14,6 +14,7 @@ build(){
     cmake ..
     echo 'Building...'
     make -j
+    cd ..
 }
 
 dependencies
