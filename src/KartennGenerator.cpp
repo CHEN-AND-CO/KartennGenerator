@@ -54,7 +54,7 @@ std::string KartennGenerator::getTownSQLReq(int _margin, std::string _adminLvl,
   query << "SELECT ST_Expand(ST_Extent(way), " << _margin
         << ") as bbox FROM planet_osm_polygon WHERE admin_level = '"
         << _adminLvl << "' AND boundary = 'administrative' AND (name LIKE '%"
-        << _townName << "%' OR (tags->\"ref:INSEE\") LIKE '" << _townName << "')";
+        << _townName << "%' OR (tags->'ref:INSEE') LIKE '" << _townName << "')";
 
   return query.str();
 }
