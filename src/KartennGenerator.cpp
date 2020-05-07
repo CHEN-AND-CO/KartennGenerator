@@ -78,6 +78,19 @@ void KartennGenerator::createDbSettings()
   out.flush();
 }
 
+void KartennGenerator::saveTownshipIdentifier(std::string township)
+{
+  std::string path{
+      model.substr(
+          0, model.length() -
+                 std::filesystem::path(model).filename().string().length()) +
+      "township"};
+  std::ofstream out(path);
+
+  out << township << std::endl;
+  out.flush();
+}
+
 void KartennGenerator::render(std::string _townName, std::string _output)
 {
   auto mapExtent = bboxToMapExtent(getBboxExtent(_townName));
@@ -95,8 +108,7 @@ void KartennGenerator::render(std::string _townName, std::string _output)
 
   m.set_srs(MAPNIK_SRS);
 
-  m.zoom_to_box(mapnik::box2d<double>(mapExtent[0], mapExtent[1], mapExtent[2],
-                                      mapExtent[3]));
+  m.zoom_to_box(mapnik::box2d<double>(mapExtent[0], mapExtent[1], mapExtent[2], mapExtent[3]));
 
   std::cout << "Layers :\n";
   for (auto &&layer : m.layers())

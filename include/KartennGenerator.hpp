@@ -48,6 +48,7 @@ public:
   void setSize(int _w, int _h);
 
   void createDbSettings();
+  void saveTownshipIdentifier(std::string township);
   void render(std::string _townName, std::string _output);
 
 private:
