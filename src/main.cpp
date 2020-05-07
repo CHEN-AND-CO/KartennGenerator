@@ -7,8 +7,8 @@
 
 #define DEFAULT_CONFIG_PATH "config.json"
 
-#define DEFAULT_WIDTH 7020  // A1 300pp
-#define DEFAULT_HEIGHT 9930 // A1 300pp
+#define DEFAULT_HEIGHT 7020  // A1 300pp
+#define DEFAULT_WIDTH 9930 // A1 300pp
 
 int main(int argc, char **argv) {
   ConfigLoader conf;
