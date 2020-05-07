@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Map[
     <!ENTITY db_settings SYSTEM "db_settings">
+    <!ENTITY township SYSTEM "township">
 ]>
 <Map background-color="#9acde9" srs="+proj=merc" >
 <!-- <Map background-color="#efd" srs="+proj=lonlat"> -->
@@ -22,14 +23,14 @@
             <PolygonSymbolizer fill="#cdcacd"/>
         </Rule>
 
-        <Rule>
+        <!-- <Rule>
             <Filter>[landuse] = construction</Filter>
             <PolygonSymbolizer fill="#d3bc9e"/>
-        </Rule>
+        </Rule> -->
     </Style>
 
     <Style name="land-use">
-        <Rule>
+        <!-- <Rule>
             <Filter>[landuse] = farmland</Filter>
             <PolygonSymbolizer fill='#d0daad'/>
             <LineSymbolizer stroke="#bfc99b" stroke-width="1"/>
@@ -44,7 +45,7 @@
         <Rule>
             <Filter>[natural] = heath</Filter>
             <PolygonSymbolizer fill="#c7c8a5"/>
-        </Rule>
+        </Rule> -->
 
         <Rule>
             <Filter>[landuse] = forest or [natural] = wood</Filter>
@@ -60,7 +61,7 @@
             <Filter>[natural] = beach and [surface] = gravel</Filter>
             <PolygonSymbolizer fill="#e8e8c3"/>
         </Rule>
-
+<!-- 
         <Rule>
             <Filter>[natural] = wetland</Filter>
             <PolygonSymbolizer fill="#cdca"/>
@@ -69,16 +70,16 @@
         <Rule>
             <Filter>[natural] = scrub</Filter>
             <PolygonSymbolizer fill="#aec69b"/>
-        </Rule>
+        </Rule> -->
 
         <Rule>
             <Filter>[landuse] = railway</Filter>
             <PolygonSymbolizer fill="#aaa"/>
         </Rule>
-         or [landuse] = ''
+
         <Rule>
             <Filter>[landuse] = cemetery</Filter>
-            <PolygonSymbolizer fill="#aaa"/>
+            <PolygonSymbolizer fill="#ddd"/>
         </Rule>
     </Style>
 
@@ -86,7 +87,13 @@
         <Rule>
             <Filter>[landuse] = military</Filter>
             <PolygonSymbolizer fill="#faa" fill-opacity="0.3"/>
-            <LineSymbolizer stroke="#a44" stroke-opacity="0.7" stroke-width="2"/>
+            <!-- <LineSymbolizer stroke="#a44" stroke-opacity="0.7" stroke-width="2"/> -->
+        </Rule>
+    </Style>
+
+    <Style name="outside-overlay">
+        <Rule>
+            <PolygonSymbolizer fill="#fff" fill-opacity="0.5"/>
         </Rule>
     </Style>
 
@@ -207,7 +214,7 @@
     </Style>
 
     <Style name="roads-names">
-        <Rule>
+        <!-- <Rule>
             <Filter>[highway] = 'tertiary' or [highway] = 'residential' or [highway] = 'living_street'</Filter>
             <TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="#000" halo-fill="#fff" halo-radius="1" placement="line" spacing="500">[name]</TextSymbolizer>
         </Rule>
@@ -215,17 +222,17 @@
         <Rule>
             <Filter>[highway] = 'secondary'</Filter>
             <TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="#000" halo-fill="#fff" halo-radius="1" placement="line" spacing="2000">[name]</TextSymbolizer>
-        </Rule>
+        </Rule> -->
 
-        <Rule>
+        <!-- <Rule>
             <Filter>[highway] = 'primary'</Filter>
-            <TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="#000" halo-fill="#fff" halo-radius="1" placement="line" spacing="2000">[name]</TextSymbolizer>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="12" fill="#000" halo-fill="#fff" halo-radius="1" placement="line" spacing="2000">[name]</TextSymbolizer>
         </Rule>
 
         <Rule>
             <Filter>[highway] = 'trunk'</Filter>
-            <TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="#000" halo-fill="#fff" halo-radius="1" placement="line" spacing="1500">[name]</TextSymbolizer>
-        </Rule>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="#000" halo-fill="#fff" halo-radius="1" placement="line" spacing="1500">[name]</TextSymbolizer>
+        </Rule> -->
     </Style>
 
     <Style name="roads-outline">
@@ -314,43 +321,43 @@
     <Style name="buildings">
         <Rule>
             <Filter>[building] = 'commercial' or [building] = 'retail'</Filter>
-            <PolygonSymbolizer fill="#a3a168" />
-            <LineSymbolizer stroke="#7f7348" stroke-width="1"/>
+            <PolygonSymbolizer fill="#a3a168" fill-opacity="0.3"/>
+            <LineSymbolizer stroke="#7f7348" stroke-width="1" stroke-opacity="0"/>
         </Rule>
 
         <Rule>
             <Filter>[building] = 'church' or [building] = 'cathedral' or [building] = 'chapel' or [building] = 'mosque' or [building] = 'monastery'</Filter>
-            <PolygonSymbolizer fill="#a97" />
-            <LineSymbolizer stroke="#775" stroke-width="1"/>
+            <PolygonSymbolizer fill="#a97" fill-opacity="0.3"/>
+            <LineSymbolizer stroke="#775" stroke-width="1" stroke-opacity="0"/>
         </Rule>
 
         <Rule>
             <Filter>[historic] = 'fort'</Filter>
-            <PolygonSymbolizer fill="#aa99" />
-            <LineSymbolizer stroke="#7759" stroke-width="2"/>
+            <PolygonSymbolizer fill="#aa99" fill-opacity="0.3"/>
+            <LineSymbolizer stroke="#7759" stroke-width="2" stroke-opacity="0"/>
         </Rule>
 
         <Rule>
             <Filter>[building] = 'school' or [building] = 'college' or [building] = 'university' or([building] = 'yes' and ([amenity] = 'school' or [amenity] = 'college' or [amenity] = 'university'))</Filter>
-            <PolygonSymbolizer fill="#889" />
-            <LineSymbolizer stroke="#448" stroke-width="1"/>
+            <PolygonSymbolizer fill="#889" fill-opacity="0.3"/>
+            <LineSymbolizer stroke="#448" stroke-width="1" stroke-opacity="0"/>
         </Rule>
 
         <Rule>
             <ElseFilter />
-            <PolygonSymbolizer fill="#928c7b" />
-            <LineSymbolizer stroke="#807e77" stroke-width="1"/>
+            <PolygonSymbolizer fill="#928c7b" fill-opacity="0.3"/>
+            <LineSymbolizer stroke="#807e77" stroke-width="1" stroke-opacity="0"/>
         </Rule>
     </Style>
 
     <Style name="building-names">
-        <Rule>
-            <Filter>[building] = 'school' or ([building] = 'yes' and ([amenity] = 'school' or [amenity] = 'college' or [amenity] = 'university')) or [building] = 'commercial' or [building] = 'retail' or [building] = 'church' </Filter>
-            <TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="#000e" halo-fill="#fff9" halo-radius="1" wrap-width="40">[name]</TextSymbolizer>
-        </Rule>
+        <!-- <Rule>
+            <Filter>[amenity] = 'school' or [amenity] = 'college' or [building] = 'school' or ([building] = 'yes' and ([amenity] = 'school' or [amenity] = 'college' or [amenity] = 'university')) or [building] = 'commercial' or [building] = 'retail' or [building] = 'church' </Filter>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="#000e" halo-fill="#fffc" halo-radius="1" wrap-width="40">[name]</TextSymbolizer>
+        </Rule> -->
 
         <Rule>
-            <Filter>[amenity] = 'school' or [amenity] = 'college' or [amenity] = 'university' or [landuse]='military'</Filter>
+            <Filter>[amenity] = 'university' or [landuse]='military'</Filter>
             <TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="#000e" halo-fill="#fffb" halo-radius="2" wrap-width="80">[name]</TextSymbolizer>
         </Rule>
         <!-- <Rule>
@@ -362,50 +369,56 @@
     <Style name="amenities">
         <Rule>
             <Filter>[amenity] = 'parking'</Filter>
-            <PolygonSymbolizer fill="#eee" />
+            <PolygonSymbolizer fill="#ddd" />
         </Rule>
 
         <Rule>
             <Filter>[leisure] = 'pitch' or [leisure] = 'park'</Filter>
             <PolygonSymbolizer fill='#badca3'/>
-            <LineSymbolizer stroke="#a1bc8e" stroke-width="1"/>
+            <!-- <LineSymbolizer stroke="#a1bc8e" stroke-width="1"/> -->
         </Rule>
 
         <Rule>
             <Filter>[leisure] = 'sports_centre'</Filter>
             <PolygonSymbolizer fill='#d7dbc6'/>
-            <LineSymbolizer stroke="#c0c5ac" stroke-width="1"/>
+            <!-- <LineSymbolizer stroke="#c0c5ac" stroke-width="1"/> -->
         </Rule>
 
         <Rule>
             <Filter>[leisure] = track</Filter>
             <PolygonSymbolizer fill='#dcc4a3'/>
-            <LineSymbolizer stroke="#b59d88" stroke-width="1"/>
+            <!-- <LineSymbolizer stroke="#b59d88" stroke-width="1"/> -->
         </Rule>
 
         <Rule>
             <Filter>[highway] = 'pedestrian'</Filter>
             <PolygonSymbolizer fill='#ddd'/>
-            <LineSymbolizer stroke="#000" stroke-width="5" stroke-linecap="round"/>
+            <!-- <LineSymbolizer stroke="#000" stroke-width="5" stroke-linecap="round"/> -->
         </Rule>
     </Style>
 
 
 
 
-    <Style name="hamlets">
+    <Style name="places">
         <Rule>
             <Filter>[place] = 'hamlet'</Filter>
-            <TextSymbolizer face-name="DejaVu Sans Condensed" size="17" fill="#000" halo-fill="#fffb" halo-radius="2">[name]</TextSymbolizer>
-            <!-- <PointSymbolizer file="/home/herrcrazi/Images/svas.png" allow-overlap="yes" /> -->
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="20" fill="#000" halo-fill="#fffb" halo-radius="2">[name]</TextSymbolizer>
         </Rule>
-    </Style>
 
-    <Style name="towns">
         <Rule>
             <Filter>[place] = 'village'</Filter>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="24" fill="#000" halo-fill="#fffb" halo-radius="2">[name]</TextSymbolizer>
+        </Rule>
+=       
+        <Rule>
+            <Filter>[place] = 'quarter' or [place] = 'suburb'</Filter>
             <TextSymbolizer face-name="DejaVu Sans Condensed" size="28" fill="#000" halo-fill="#fffb" halo-radius="3">[name]</TextSymbolizer>
-            <!-- <PointSymbolizer file="/home/herrcrazi/Images/svas.png" allow-overlap="yes" /> -->
+        </Rule>
+
+        <Rule>
+            <Filter>[place] = 'city' or [place] = 'town'</Filter>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="52" fill="#000" halo-fill="#fffb" halo-radius="3">[name]</TextSymbolizer>
         </Rule>
     </Style>
 
@@ -417,6 +430,12 @@
         <Rule>
             <!-- <PolygonSymbolizer fill="#ff00ff" fill-opacity="0.01"/> -->
             <LineSymbolizer stroke="#ff00ff" stroke-width="0.5"/>
+        </Rule>
+    </Style>
+
+    <Style name="debug-points">
+        <Rule>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="#f0f" halo-fill="#0f0" halo-radius="3">[name]</TextSymbolizer>
         </Rule>
     </Style>
 
@@ -497,7 +516,7 @@
         </Datasource>
     </Layer>
 
-    <Layer name="roads-outline" srs="+init=epsg:3857">
+    <!-- <Layer name="roads-outline" srs="+init=epsg:3857">
         <StyleName>roads-outline</StyleName>
 
         <Datasource base="postgis-kartenn">
@@ -509,12 +528,12 @@
             ) as buildings
             </Parameter>
         </Datasource>
-    </Layer>
+    </Layer> -->
 
     <Layer name="roads" srs="+init=epsg:3857" group-by="z">
         <StyleName>roads-bridges</StyleName>
         <StyleName>railways-outline</StyleName>
-        <StyleName>roads-paths</StyleName>
+        <!-- <StyleName>roads-paths</StyleName> -->
         <StyleName>roads-misc</StyleName>
         <StyleName>roads-national</StyleName>
         <StyleName>railways</StyleName>
@@ -542,7 +561,7 @@
         </Datasource>
     </Layer>
     
-    <Layer name="roads-names" srs="+init=epsg:3857">
+    <!-- <Layer name="roads-names" srs="+init=epsg:3857">
         <StyleName>roads-names</StyleName>
 
         <Datasource base="postgis-kartenn">
@@ -552,15 +571,27 @@
             ) as roadnames
             </Parameter>
         </Datasource>
-    </Layer>
+    </Layer> -->
 
-    <Layer name="places" srs="+init=epsg:3857">
-        <StyleName>hamlets</StyleName>
-        <StyleName>towns</StyleName>
+    <Layer name="outside-overlay" srs="+init=epsg:3857">
+        <StyleName>outside-overlay</StyleName>
 
         <Datasource base="postgis-kartenn">
             <Parameter name="table">(
-                SELECT * FROM planet_osm_point as p  
+                SELECT * FROM planet_osm_polygon 
+                WHERE admin_level = '8' AND boundary = 'administrative'
+                AND (tags->'ref:INSEE' NOT LIKE '&township;' AND name NOT LIKE '&township;')
+            ) as outsideover
+            </Parameter>
+        </Datasource>
+    </Layer>
+
+    <Layer name="places" srs="+init=epsg:3857">
+        <StyleName>places</StyleName>
+
+        <Datasource base="postgis-kartenn">
+            <Parameter name="table">(
+                SELECT * FROM planet_osm_point  
                 WHERE place IS NOT NULL
             ) as places
             </Parameter>

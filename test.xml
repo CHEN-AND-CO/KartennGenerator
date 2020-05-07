@@ -352,13 +352,13 @@
 
     <Style name="building-names">
         <Rule>
-            <Filter>[building] = 'school' or ([building] = 'yes' and ([amenity] = 'school' or [amenity] = 'college' or [amenity] = 'university')) or [building] = 'commercial' or [building] = 'retail' or [building] = 'church' </Filter>
-            <TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="#000e" halo-fill="#fff9" halo-radius="1" wrap-width="40">[name]</TextSymbolizer>
+            <Filter>[amenity] = 'school' or [amenity] = 'college' or [building] = 'school' or ([building] = 'yes' and ([amenity] = 'school' or [amenity] = 'college' or [amenity] = 'university')) or [building] = 'commercial' or [building] = 'retail' or [building] = 'church' </Filter>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="#000e" halo-fill="#fffc" halo-radius="1" wrap-width="40">[name]</TextSymbolizer>
         </Rule>
 
         <Rule>
-            <Filter>[amenity] = 'school' or [amenity] = 'college' or [amenity] = 'university' or [landuse]='military'</Filter>
-            <TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="#000e" halo-fill="#fffb" halo-radius="2" wrap-width="80">[name]</TextSymbolizer>
+            <Filter>[amenity] = 'university' or [landuse]='military'</Filter>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="12" fill="#000e" halo-fill="#fffb" halo-radius="2" wrap-width="80">[name]</TextSymbolizer>
         </Rule>
         <!-- <Rule>
             <ElseFilter />
@@ -400,19 +400,20 @@
 
 
 
-    <Style name="hamlets">
+    <Style name="places">
         <Rule>
             <Filter>[place] = 'hamlet'</Filter>
-            <TextSymbolizer face-name="DejaVu Sans Condensed" size="17" fill="#000" halo-fill="#fffb" halo-radius="2">[name]</TextSymbolizer>
-            <!-- <PointSymbolizer file="/home/herrcrazi/Images/svas.png" allow-overlap="yes" /> -->
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="#000" halo-fill="#fffb" halo-radius="2">[name]</TextSymbolizer>
         </Rule>
-    </Style>
 
-    <Style name="towns">
         <Rule>
             <Filter>[place] = 'village'</Filter>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="18" fill="#000" halo-fill="#fffb" halo-radius="2">[name]</TextSymbolizer>
+        </Rule>
+=
+        <Rule>
+            <Filter>[place] = 'city' or [place] = 'town'</Filter>
             <TextSymbolizer face-name="DejaVu Sans Condensed" size="28" fill="#000" halo-fill="#fffb" halo-radius="3">[name]</TextSymbolizer>
-            <!-- <PointSymbolizer file="/home/herrcrazi/Images/svas.png" allow-overlap="yes" /> -->
         </Rule>
     </Style>
 
@@ -424,6 +425,12 @@
         <Rule>
             <!-- <PolygonSymbolizer fill="#ff00ff" fill-opacity="0.01"/> -->
             <LineSymbolizer stroke="#ff00ff" stroke-width="0.5"/>
+        </Rule>
+    </Style>
+
+    <Style name="debug-points">
+        <Rule>
+            <TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="#f0f" halo-fill="#0f0" halo-radius="3">[name]</TextSymbolizer>
         </Rule>
     </Style>
 
@@ -568,19 +575,18 @@
             <Parameter name="table">(
                 SELECT * FROM planet_osm_polygon 
                 WHERE admin_level = '8' AND boundary = 'administrative'
-                AND (tags->'ref:INSEE' NOT LIKE '&township;')
+                AND (tags->'ref:INSEE' NOT LIKE '&township;' AND name NOT LIKE '&township;')
             ) as outsideover
             </Parameter>
         </Datasource>
     </Layer>
 
     <Layer name="places" srs="+init=epsg:3857">
-        <StyleName>hamlets</StyleName>
-        <StyleName>towns</StyleName>
+        <StyleName>places</StyleName>
 
         <Datasource base="postgis-kartenn">
             <Parameter name="table">(
-                SELECT * FROM planet_osm_point as p  
+                SELECT * FROM planet_osm_point  
                 WHERE place IS NOT NULL
             ) as places
             </Parameter>

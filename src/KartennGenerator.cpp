@@ -87,13 +87,14 @@ void KartennGenerator::saveTownshipIdentifier(std::string township)
       "township"};
   std::ofstream out(path);
 
-  out << township << std::endl;
+  out << township;
   out.flush();
 }
 
 void KartennGenerator::render(std::string _townName, std::string _output)
 {
   auto mapExtent = bboxToMapExtent(getBboxExtent(_townName));
+  saveTownshipIdentifier(_townName);
 
   std::cout << "Rendering map...\n";
 
